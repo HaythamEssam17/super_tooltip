@@ -64,6 +64,8 @@ class ToolTipWidget extends StatefulWidget {
   final TextDirection? descriptionTextDirection;
   final double toolTipSlideEndDistance;
   final CrossAxisAlignment? titleDesCrossAxisAlignment;
+  final Widget? toolTipWidget;
+  final double? toolTipWidth;
 
   const ToolTipWidget({
     super.key,
@@ -99,6 +101,8 @@ class ToolTipWidget extends StatefulWidget {
     this.descriptionTextDirection,
     this.toolTipSlideEndDistance = 7,
     this.titleDesCrossAxisAlignment,
+    this.toolTipWidget,
+    this.toolTipWidth,
   });
 
   @override
@@ -146,6 +150,11 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
   }
 
   void _getTooltipWidth() {
+    if (widget.toolTipWidth != null) {
+      tooltipWidth = widget.toolTipWidth!;
+      return;
+    }
+
     final titleStyle = widget.titleTextStyle ??
         Theme.of(context)
             .textTheme
@@ -442,6 +451,8 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                             ? CrossAxisAlignment.start
                                             : CrossAxisAlignment.center),
                                 children: <Widget>[
+                                  if (widget.toolTipWidget != null)
+                                    widget.toolTipWidget!,
                                   if (widget.title != null)
                                     Padding(
                                       padding: widget.titlePadding ??
@@ -462,25 +473,26 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                                 ),
                                       ),
                                     ),
-                                  Padding(
-                                    padding: widget.descriptionPadding ??
-                                        EdgeInsets.zero,
-                                    child: Text(
-                                      widget.description!,
-                                      textAlign: widget.descriptionAlignment,
-                                      textDirection:
-                                          widget.descriptionTextDirection,
-                                      style: widget.descTextStyle ??
-                                          Theme.of(context)
-                                              .textTheme
-                                              .titleSmall!
-                                              .merge(
-                                                TextStyle(
-                                                  color: widget.textColor,
+                                  if (widget.description != null)
+                                    Padding(
+                                      padding: widget.descriptionPadding ??
+                                          EdgeInsets.zero,
+                                      child: Text(
+                                        widget.description!,
+                                        textAlign: widget.descriptionAlignment,
+                                        textDirection:
+                                            widget.descriptionTextDirection,
+                                        style: widget.descTextStyle ??
+                                            Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .merge(
+                                                  TextStyle(
+                                                    color: widget.textColor,
+                                                  ),
                                                 ),
-                                              ),
+                                      ),
                                     ),
-                                  ),
                                 ],
                               ),
                             ),

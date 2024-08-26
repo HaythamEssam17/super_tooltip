@@ -254,10 +254,12 @@ class Showcase extends StatefulWidget {
 
   /// Cross axis alignment for title and description.
   final CrossAxisAlignment? titleDesCrossAxisAlignment;
+  final Widget? toolTipWidget;
+  final double? toolTipWidth;
 
   const Showcase({
     required this.key,
-    required this.description,
+    this.description,
     required this.child,
     this.title,
     this.titleAlignment = TextAlign.start,
@@ -302,6 +304,8 @@ class Showcase extends StatefulWidget {
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
     this.titleDesCrossAxisAlignment,
+    this.toolTipWidget,
+    this.toolTipWidth,
   })  : height = null,
         width = null,
         container = null,
@@ -344,6 +348,8 @@ class Showcase extends StatefulWidget {
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
     this.titleDesCrossAxisAlignment,
+    this.toolTipWidget,
+    this.toolTipWidth,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -638,6 +644,8 @@ class _ShowcaseState extends State<Showcase> {
             descriptionTextDirection: widget.descriptionTextDirection,
             toolTipSlideEndDistance: widget.toolTipSlideEndDistance,
             titleDesCrossAxisAlignment: widget.titleDesCrossAxisAlignment,
+            toolTipWidth: widget.toolTipWidth,
+            toolTipWidget: widget.toolTipWidget,
           ),
         ],
       ],
