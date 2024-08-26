@@ -252,9 +252,6 @@ class Showcase extends StatefulWidget {
   /// Defaults to 7.
   final double toolTipSlideEndDistance;
 
-  /// if `autoShow` is true, showcase will be shown automatically
-  final bool autoShow;
-
   /// Cross axis alignment for title and description.
   final CrossAxisAlignment? titleDesCrossAxisAlignment;
 
@@ -304,7 +301,6 @@ class Showcase extends StatefulWidget {
     this.onBarrierClick,
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
-    this.autoShow = false,
     this.titleDesCrossAxisAlignment,
   })  : height = null,
         width = null,
@@ -347,7 +343,6 @@ class Showcase extends StatefulWidget {
     this.onBarrierClick,
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
-    this.autoShow = false,
     this.titleDesCrossAxisAlignment,
   })  : showArrow = false,
         onToolTipClick = null,
@@ -420,7 +415,7 @@ class _ShowcaseState extends State<Showcase> {
   void showOverlay() {
     final activeStep = ShowCaseWidget.activeTargetWidget(context);
     setState(() {
-      _showShowCase = activeStep == widget.key || widget.autoShow;
+      _showShowCase = activeStep == widget.key;
     });
 
     if (activeStep == widget.key) {
