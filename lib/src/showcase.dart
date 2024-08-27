@@ -257,6 +257,10 @@ class Showcase extends StatefulWidget {
   final Widget? toolTipWidget;
   final double? toolTipWidth;
 
+  // used to delay dismiss the tip
+  // to let user to see the tip for a while and ignore the fast taps
+  final Duration dismissDelay;
+
   const Showcase({
     required this.key,
     this.description,
@@ -306,6 +310,7 @@ class Showcase extends StatefulWidget {
     this.titleDesCrossAxisAlignment,
     this.toolTipWidget,
     this.toolTipWidth,
+    this.dismissDelay = Duration.zero,
   })  : height = null,
         width = null,
         container = null,
@@ -350,6 +355,7 @@ class Showcase extends StatefulWidget {
     this.titleDesCrossAxisAlignment,
     this.toolTipWidget,
     this.toolTipWidth,
+    this.dismissDelay = Duration.zero,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -417,11 +423,15 @@ class _ShowcaseState extends State<Showcase> {
     }
   }
 
+  DateTime _showedAt = DateTime.now();
+
   /// show overlay if there is any target widget
   void showOverlay() {
     final activeStep = ShowCaseWidget.activeTargetWidget(context);
     setState(() {
       _showShowCase = activeStep == widget.key;
+
+      _showedAt = DateTime.now();
     });
 
     if (activeStep == widget.key) {
@@ -536,6 +546,9 @@ class _ShowcaseState extends State<Showcase> {
     _isTooltipDismissed = false;
   }
 
+  bool get canDismiss =>
+      DateTime.now().difference(_showedAt) > widget.dismissDelay;
+
   Widget buildOverlayOnTarget(
     Offset offset,
     Size size,
@@ -558,11 +571,13 @@ class _ShowcaseState extends State<Showcase> {
       children: [
         GestureDetector(
           onTap: () {
-            if (!showCaseWidgetState.disableBarrierInteraction &&
-                !widget.disableBarrierInteraction) {
-              _nextIfAny();
+            if (canDismiss) {
+              if (!showCaseWidgetState.disableBarrierInteraction &&
+                  !widget.disableBarrierInteraction) {
+                _nextIfAny();
+              }
+              widget.onBarrierClick?.call();
             }
-            widget.onBarrierClick?.call();
           },
           child: ClipPath(
             clipper: RRectClipper(
