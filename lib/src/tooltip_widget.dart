@@ -607,15 +607,11 @@ class _Arrow extends CustomPainter {
     if (isUpArrow) {
       return Path()
         ..moveTo(0, y)
-        ..lineTo(x / 2, 0)
-        ..lineTo(x, y)
-        ..lineTo(0, y);
+        ..conicTo(x / 2, -y / 2, x, y, 3);
     }
     return Path()
       ..moveTo(0, 0)
-      ..lineTo(x, 0)
-      ..lineTo(x / 2, y)
-      ..lineTo(0, 0);
+      ..conicTo(x / 2, y * 1.5, x, 0, 3);
   }
 
   @override
