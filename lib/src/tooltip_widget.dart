@@ -66,6 +66,7 @@ class ToolTipWidget extends StatefulWidget {
   final CrossAxisAlignment? titleDesCrossAxisAlignment;
   final Widget? toolTipWidget;
   final double? toolTipWidth;
+  final double heightBetweenTargetAndTooltip;
 
   const ToolTipWidget({
     super.key,
@@ -103,6 +104,7 @@ class ToolTipWidget extends StatefulWidget {
     this.titleDesCrossAxisAlignment,
     this.toolTipWidget,
     this.toolTipWidth,
+    required this.heightBetweenTargetAndTooltip,
   });
 
   @override
@@ -360,8 +362,8 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
     final num contentFractionalOffset =
         contentOffsetMultiplier.clamp(-1.0, 0.0);
 
-    var paddingTop = isArrowUp ? 22.0 : 0.0;
-    var paddingBottom = isArrowUp ? 0.0 : 22.0;
+    var paddingTop = isArrowUp ? widget.heightBetweenTargetAndTooltip : 0.0;
+    var paddingBottom = isArrowUp ? 0.0 : widget.heightBetweenTargetAndTooltip;
 
     if (!widget.showArrow) {
       paddingTop = 10;

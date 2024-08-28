@@ -261,6 +261,9 @@ class Showcase extends StatefulWidget {
   // to let user to see the tip for a while and ignore the fast taps
   final Duration dismissDelay;
 
+  /// default is 22, minimum is 10
+  final double heightBetweenTargetAndTooltip;
+
   const Showcase({
     required this.key,
     this.description,
@@ -311,6 +314,7 @@ class Showcase extends StatefulWidget {
     this.toolTipWidget,
     this.toolTipWidth,
     this.dismissDelay = Duration.zero,
+    this.heightBetweenTargetAndTooltip = 22,
   })  : height = null,
         width = null,
         container = null,
@@ -321,7 +325,9 @@ class Showcase extends StatefulWidget {
         assert(disposeOnTap == null || onTargetClick != null,
             "onTargetClick is required if you're using disposeOnTap"),
         assert(onBarrierClick == null || disableBarrierInteraction == false,
-            "can't use onBarrierClick & disableBarrierInteraction property at same time");
+            "can't use onBarrierClick & disableBarrierInteraction property at same time"),
+        assert(heightBetweenTargetAndTooltip >= 10,
+            "heightBetweenTargetAndTooltip must be >= 10");
 
   const Showcase.withWidget({
     required this.key,
@@ -356,6 +362,7 @@ class Showcase extends StatefulWidget {
     this.toolTipWidget,
     this.toolTipWidth,
     this.dismissDelay = Duration.zero,
+    this.heightBetweenTargetAndTooltip = 22,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -661,6 +668,7 @@ class _ShowcaseState extends State<Showcase> {
             titleDesCrossAxisAlignment: widget.titleDesCrossAxisAlignment,
             toolTipWidth: widget.toolTipWidth,
             toolTipWidget: widget.toolTipWidget,
+            heightBetweenTargetAndTooltip: widget.heightBetweenTargetAndTooltip,
           ),
         ],
       ],
