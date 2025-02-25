@@ -188,6 +188,7 @@ class _MailPageState extends State<MailPage> {
                                           color: Theme.of(context).primaryColor,
                                         ),
                                       ),
+                                      // tooltipPosition: TooltipPosition.right,
                                     ),
                                     const SizedBox(
                                       width: 10,
