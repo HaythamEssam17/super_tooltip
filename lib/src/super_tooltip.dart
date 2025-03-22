@@ -66,7 +66,7 @@ class SuperTooltip extends StatefulWidget {
   /// The direction in which the tooltip should appear relative to its
   /// target widget.
   ///
-  /// Defaults to [TooltipDirection.down].
+  /// Defaults to [TooltipDirection.bottom].
   ///
   /// See also:
   ///
@@ -313,7 +313,7 @@ class SuperTooltip extends StatefulWidget {
   SuperTooltip({
     Key? key,
     required this.content,
-    this.popupDirection = TooltipDirection.down,
+    this.popupDirection = TooltipDirection.bottom,
     this.controller,
     this.onLongPress,
     this.onShow,
@@ -557,15 +557,15 @@ class _SuperTooltipState extends State<SuperTooltip>
 
       if (overlay != null) {
         if (target.dy > overlay.size.center(Offset.zero).dy) {
-          preferredDirection = TooltipDirection.up;
+          preferredDirection = TooltipDirection.top;
           top = 0.0;
         } else {
-          preferredDirection = TooltipDirection.down;
+          preferredDirection = TooltipDirection.bottom;
           bottom = 0.0;
         }
       } else {
         // overlay is null - set default values
-        preferredDirection = TooltipDirection.down;
+        preferredDirection = TooltipDirection.bottom;
         bottom = 0.0;
       }
     } else if (widget.snapsFarAwayHorizontally) {
@@ -848,7 +848,7 @@ class _SuperTooltipState extends State<SuperTooltip>
 
       // RIGHT/UP: ---------------------------------
       case TooltipDirection.right:
-      case TooltipDirection.up:
+      case TooltipDirection.top:
         right = 5.0;
         if (closeButtonType == CloseButtonType.inside) {
           // If the close button is inside the tooltip, position it at the top.
@@ -862,7 +862,7 @@ class _SuperTooltipState extends State<SuperTooltip>
         break;
 
       // DOWN: -------------------------------------
-      case TooltipDirection.down:
+      case TooltipDirection.bottom:
         right = 2.0;
         if (closeButtonType == CloseButtonType.inside) {
           // If the close button is inside the tooltip, position it below the arrow.

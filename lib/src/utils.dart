@@ -19,10 +19,10 @@ class SuperUtils {
             : 0.0;
 
     switch (preferredDirection) {
-      case TooltipDirection.down:
+      case TooltipDirection.bottom:
         return EdgeInsets.only(top: arrowTipDistance + arrowLength);
 
-      case TooltipDirection.up:
+      case TooltipDirection.top:
         return EdgeInsets.only(
             bottom: arrowTipDistance + arrowLength, top: top);
 

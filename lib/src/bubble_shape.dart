@@ -83,7 +83,7 @@ class BubbleShape extends ShapeBorder {
     bottomRightRadius = (right == 0 || bottom == 0) ? 0.0 : borderRadius;
 
     switch (preferredDirection) {
-      case TooltipDirection.down:
+      case TooltipDirection.bottom:
         return getBottomRightPath(rect)
           ..lineTo(
             min(
@@ -136,7 +136,7 @@ class BubbleShape extends ShapeBorder {
             clockwise: false,
           );
 
-      case TooltipDirection.up:
+      case TooltipDirection.top:
         return getLeftTopPath(rect)
           ..lineTo(rect.right, rect.bottom - bottomRightRadius)
           ..arcToPoint(Offset(rect.right - bottomRightRadius, rect.bottom),

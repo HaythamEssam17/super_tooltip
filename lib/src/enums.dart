@@ -1,4 +1,4 @@
-enum TooltipDirection { up, down, left, right }
+enum TooltipDirection { top, bottom, left, right }
 
 enum CloseButtonType { inside, outside }
 

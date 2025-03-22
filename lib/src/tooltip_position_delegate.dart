@@ -40,13 +40,13 @@ class TooltipPositionDelegate extends SingleChildLayoutDelegate {
     var newConstraints = constraints;
 
     switch (preferredDirection) {
-      case TooltipDirection.up:
-      case TooltipDirection.down:
+      case TooltipDirection.top:
+      case TooltipDirection.bottom:
         newConstraints = SuperUtils.verticalConstraints(
           constraints: newConstraints,
           margin: margin,
           bottom: bottom,
-          isUp: preferredDirection == TooltipDirection.up,
+          isUp: preferredDirection == TooltipDirection.top,
           target: target,
           top: top,
           left: left,
@@ -94,9 +94,9 @@ class TooltipPositionDelegate extends SingleChildLayoutDelegate {
     //   );
 
     switch (preferredDirection) {
-      case TooltipDirection.up:
-      case TooltipDirection.down:
-        final topOffset = preferredDirection == TooltipDirection.up
+      case TooltipDirection.top:
+      case TooltipDirection.bottom:
+        final topOffset = preferredDirection == TooltipDirection.top
             ? top ?? target.dy - childSize.height
             : target.dy;
 

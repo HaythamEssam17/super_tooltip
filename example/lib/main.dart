@@ -68,16 +68,17 @@ class _TargetWidgetState extends State<TargetWidget> {
         },
         child: SuperTooltip(
           controller: _controller,
-          popupDirection: TooltipDirection.down,
+          popupDirection: TooltipDirection.bottom,
           backgroundColor: Color(0xff2f2d2f),
-          showCloseButton: true,
+          showCloseButton: false,
           left: 30,
           right: 30,
-          bottom: 200,
-          arrowTipDistance: 20.0,
+          // bottom: 200,
+          arrowTipDistance: 30.0,
           minimumOutsideMargin: 120,
           arrowBaseWidth: 20.0,
-          arrowLength: 20.0,
+          arrowTipRadius: 2.5,
+          arrowLength: 10.0,
           borderWidth: 2.0,
           constraints: const BoxConstraints(
             minHeight: 0.0,
@@ -89,7 +90,7 @@ class _TargetWidgetState extends State<TargetWidget> {
           touchThroughAreaCornerRadius: 30,
           barrierColor: Color.fromARGB(26, 47, 45, 47),
           content: const Text(
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+            "Lorem ipsum dolor sit amet",
             softWrap: true,
             textAlign: TextAlign.center,
             style: TextStyle(
